@@ -17,15 +17,7 @@
 							"    const responseBody = pm.response.json();\r",
 							"    pm.expect(responseBody.coord.lat).to.equal(51.51);\r",
 							"    pm.expect(responseBody.coord.lon).to.equal(-0.13);\r",
-							"});\r",
-							"\r",
-							"\r",
-							"\r",
-							"\r",
-							")\r",
-							"\r",
-							"\r",
-							")"
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -165,13 +157,16 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Clouds\",function()\r",
-							"{\r",
-							"    const responseBody = response.json();\r",
-							"    pm.expect(responseBody.clouds).to.equal(90);\r",
-							"}\r",
+							"pm.test(\"Cloudiness is within an acceptable range\", function () {\r",
+							"    const responseBody = pm.response.json();\r",
+							"    const cloudinessPercentage = responseBody.clouds.all;\r",
 							"\r",
-							");"
+							"    const minCloudiness = 0;\r",
+							"    const maxCloudiness = 100;\r",
+							"    \r",
+							"    pm.expect(cloudinessPercentage).to.be.within(minCloudiness, maxCloudiness);\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript"
 					}
